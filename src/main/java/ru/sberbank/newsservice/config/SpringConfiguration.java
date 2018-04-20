@@ -4,15 +4,17 @@ import feign.Feign;
 import feign.Logger;
 import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.netflix.feign.support.SpringMvcContract;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.sberbank.newsservice.feign.ArticleFeignClient;
 
 @Configuration
-public class JavaConfig {
+public class SpringConfiguration {
 
-    public static final String ARTICLE_SERVICE_URL = "http://localhost:8090";
+    @Value("${feign.article-service.url}")
+    String ARTICLE_SERVICE_URL;
 
     @Bean
     ArticleFeignClient articleFeignClient() {
