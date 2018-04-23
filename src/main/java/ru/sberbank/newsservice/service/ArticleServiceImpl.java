@@ -5,8 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.sberbank.newsservice.dao.ArticleDao;
 import ru.sberbank.newsservice.model.Article;
 
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,11 +17,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> get(List<Integer> usersId) {
-        List<Article> articles = new ArrayList<>();
-
-        usersId.forEach((userId) -> articles.addAll(articleDao.getArticlesById(userId)));
-
-        return articles.stream()
+         return usersId.stream()
+                .map(id -> articleDao.getArticlesById(id))
+                 .flatMap(Collection::stream)
                 .sorted(((o1, o2) -> o2.getDateTime().compareTo(o1.getDateTime())))
                 .limit(50)
                 .collect(Collectors.toList());

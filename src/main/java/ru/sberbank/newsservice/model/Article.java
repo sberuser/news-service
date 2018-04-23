@@ -30,9 +30,17 @@ public class Article{
     }
 
     public Article(Integer id, String name, String text) {
+        this.id = id;
+        this.name = name;
+        this.text = text;
+    }
+
+    public Article(Integer id, Integer userId, String name, String text, LocalDateTime dateTime) {
+        this.id = id;
         this.name = name;
         this.text = text;
         this.userId = userId;
+        this.dateTime = dateTime;
     }
 
     public int getId() {
@@ -78,9 +86,10 @@ public class Article{
     @Override
     public String toString() {
         return "Article{" +
-                "name='" + name + '\'' +
-                ", text='" + text + '\'' +
+                "id=" + id +
                 ", userId=" + userId +
+                ", name='" + name + '\'' +
+                ", text='" + text + '\'' +
                 ", dateTime=" + dateTime +
                 '}';
     }
