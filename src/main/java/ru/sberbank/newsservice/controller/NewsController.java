@@ -11,10 +11,12 @@ import java.util.List;
 @RestController
 public class NewsController {
 
+    public static final String REST_URL = "/news";
+
     @Autowired
     private ArticleService articleService;
 
-    @RequestMapping(value = "/news",
+    @RequestMapping(value = REST_URL,
                     produces = MediaType.APPLICATION_JSON_VALUE,
                     consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<Article> get(@RequestBody List<Integer> usersId) {
