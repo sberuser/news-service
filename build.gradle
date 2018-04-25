@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'ru.sberbank'
+version = '0.0.1-SNAPSHOT'
+
+description = """newsservice"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka', version:'1.2.6.RELEASE'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-feign', version:'1.2.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.5.2.RELEASE'
+    compile group: 'com.netflix.feign', name: 'feign-jackson', version:'8.18.0'
+    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'1.5.2.RELEASE') {
+exclude(module: 'commons-logging')
+    }
+}
